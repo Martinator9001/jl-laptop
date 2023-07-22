@@ -185,7 +185,7 @@ function isPolice()
     if not PlayerData then return end
     local job = PlayerData.job.name
     for i = 1, #Config.PoliceJobs do
-        if job == Config.PoliceJobs[i] then -- and onDuty didnt add this cuz testing
+        if job == Config.PoliceJobs[i] and onDuty then -- and onDuty didnt add this cuz testing
             return true
         end
     end

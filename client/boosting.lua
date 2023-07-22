@@ -21,7 +21,7 @@ local function Notify(text, type, time)
             Lang:t('boosting.info.phonenotify'),
             text,
             "fas fa-user-secret",
-            "#00008B",
+            "#FFFFFF",
             time
         )
     elseif Config.Boosting.Notifications == "npwd" then
@@ -139,7 +139,7 @@ RegisterNetEvent('lockpicks:UseLockpick', function()
                         status = false
                     }
                 })
-                exports['ps-dispatch']:CarBoosting(vehicle)
+                exports['qb-dispatch']:CarBoosting(vehicle)
             else
                 TriggerServerEvent('jl-laptop:server:CancelBoost', NetID, Plate)
             end
@@ -451,7 +451,7 @@ RegisterNetEvent('jl-laptop:client:HackCar', function()
                 local pushingP = promise.new()
                 exports['ps-ui']:Scrambler(function(cb)
                     pushingP:resolve(cb)
-                end, psUI[math.random(1, #psUI)], 30, 0)
+                end, psUI[math.random(1, #psUI)], 120, 0)
                 local success = Citizen.Await(pushingP)
 
                 TriggerServerEvent('jl-laptop:server:SyncPlates', success)
@@ -541,14 +541,21 @@ RegisterNetEvent('jl-laptop:client:SyncBlips', function(coords, newNet)
         SetBlipHighDetail(blips[newNet], true)
         SetBlipColour(blips[newNet], 1)
         SetBlipAsShortRange(blips[newNet], true)
+        
+    --    blips[newNet] = AddBlipForCoord(coords.x, coords.y, coords.z)
+    --SetBlipSprite(blips[newNet], 620)
+    --SetBlipDisplay(blips[newNet], 2)
+    --SetBlipScale(blips[newNet], 2.0)
+    --SetBlipColour(blips[newNet], 47)
+    --SetBlipAsShortRange(blips[newNet], false)
+    --SetBlipHighDetail(blips[newNet], true)
+--
+--
+    --BeginTextCommandSetBlipName("STRING")
+    --AddTextComponentString("Тракер")
+    --EndTextCommandSetBlipName(blips[newNet])
     end
 end)
-
-
-
-
-
-
 
 -- ** CONTRACT HANDLER ** --
 
