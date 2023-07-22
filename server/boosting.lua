@@ -46,7 +46,7 @@ local function Notify(src, text, type, time)
             Lang:t('boosting.info.phonenotify'),
             text,
             "fas fa-user-secret",
-            "#00008B",
+            "#FFFFFF",
             time
         )
     elseif Config.Boosting.Notifications == "npwd" then
@@ -361,7 +361,7 @@ RegisterNetEvent('jl-laptop:server:SyncPlates', function(success)
     end
 
     local ped = GetPlayerPed(src)
-    local car = cache.vehicle
+    local car = GetVehiclePedIsIn(ped)
     local state = Entity(car).state.Boosting
 
     if not state then
@@ -379,7 +379,7 @@ RegisterNetEvent('jl-laptop:server:SyncPlates', function(success)
 
     if success then
         if state.boostHacks - 1 >= 1 then
-            Notify(src, Lang:t('boosting.success.tracker_off', { tracker_left = newThing, time = randomSeconds }),
+            Notify(src, Lang:t('boosting.success.tracker_off', { tracker_left = state.boostHacks-1, time = randomSeconds }),
                 'success', 7500)
         end
 
@@ -510,9 +510,9 @@ RegisterNetEvent('jl-laptop:server:finishBoost', function(netId, isvin)
     Player.Functions.SetMetaData('carboostrep', boostData)
     if not isvin then
         if currentRuns[CID].cost == 0 then
-            currentRuns[CID].cost = math.random(1, 2) -- makes it so they can actually get GNE when the boost is Free
+            currentRuns[CID].cost = 1 -- makes it so they can actually get GNE when the boost is Free (bez polezno osven ako min cost = 0)
         end
-        local reward = math.ceil(currentRuns[CID].cost * math.random(2, 3))
+        local reward = currentRuns[CID].cost * math.random(6, 10)
         if Config.RenewedPhone then
             exports['qb-phone']:AddCrypto(src, "gne", reward)
         else
@@ -795,8 +795,8 @@ end
 
 local function calcPrice(tier, type)
     if not tier or not type then return end
-    local price = math.random(Config.Boosting.Price[tier].min, Config.Boosting.Price[tier].max)
-    if type == "boosting" then price = price else price = price * math.random(2, 5) end
+    local price = math.random(Config.Boosting.Price[tier].min, Config.Boosting.Price[tier].max) / 1000 --една хилядна
+    if type == "boosting" then price = price else price = price * math.random(3, 5) end
     return Config.Boosting.Debug and 0 or price
 end
 
@@ -842,11 +842,12 @@ CreateThread(function()
                         end
                         -- If skipped is bigger or equal to 25 we give player a contract for waiting
                         -- Otherwise we say if they been in queue longer than 2-7 skips and their chance is higher than 0.75 (meaning 25% chance) we will reward them with a contract
-                        if v.skipped >= 25 or (v.skipped >= math.random(2, 7) and ContractChance >= 0.75) then
-                            generateContract(v.src)
-                        else
-                            v.skipped += 1
-                        end
+                        -- if v.skipped >= 25 or (v.skipped >= math.random(1, 24) and ContractChance >= 0.75) then --mahnat ot marti
+                        --     generateContract(v.src)
+                        -- else
+                        --     v.skipped += 1
+                        -- end
+                        generateContract(v.src)
                     elseif #currentContracts[k] >= Config.Boosting.MaxBoosts then
                         v.active = false
                         if v.online then
@@ -858,7 +859,7 @@ CreateThread(function()
                 end
             end
         end
-        Wait(Config.Boosting.Debug and 200 or (math.random(1, 4) * 60000)) -- Once every 1 to 4 minutes
+        Wait(Config.Boosting.Debug and 200 or (math.random(10, 30) * 1000)) -- Once every 1 to 4 minutes
     end
 end)
 
