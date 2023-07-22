@@ -4,9 +4,9 @@ Config.Boosting.MinCops = 0
 
 Config.Boosting.Notifications = "phone" -- Use this for qb // renewed phone intergration, use "notify" for normal QBCore Notifications // NWPD for New Phone Who Dis
 
-Config.Boosting.Debug = true -- Make this true to make boosting faster lmao
+Config.Boosting.Debug = false -- Make this true to make boosting faster lmao
 
-Config.Boosting.HackingDevice = "phone" -- Whatever item you use to hack a car with
+Config.Boosting.HackingDevice = "electronickit" -- Whatever item you use to hack a car with
 
 Config.Boosting.HackDelayMin = 30 -- Seconds
 Config.Boosting.HackDelayMax = 60 -- Seconds
@@ -558,44 +558,40 @@ Config.Boosting.Locations = {
 
 Config.Boosting.TiersPerRep = {
     ["D"] = 0,
-    ["C"] = 50,
-    ["B"] = 100,
-    ["A"] = 150,
-    ["A+"] = 200,
-    ["S"] = 250,
-    ["S+"] = 300,
+    ["C"] = 100,
+    ["B"] = 200,
+    ["A"] = 300,
+    ["A+"] = 350,
+    ["S"] = 400,
+    ["S+"] = 500,
 }
 
 Config.Boosting.Price = {
-    ["D"] = { min = 0, max = 3 },
-    ["C"] = { min = 5, max = 10 },
-    ["B"] = { min = 10, max = 20 },
-    ["A"] = { min = 15, max = 30 },
-    ["A+"] = { min = 20, max = 45 },
-    ["S"] = { min = 30, max = 50 },
-    ["S+"] = { min = 40, max = 80 },
+    ["D"] = { min = 100, max = 200 },
+    ["C"] = { min = 201, max = 300 },
+    ["B"] = { min = 301, max = 500 },
+    ["A"] = { min = 501, max = 600 },
+    ["A+"] = { min = 601, max = 800 },
+    ["S"] = { min = 800, max = 1000 },
+    ["S+"] = { min = 1001, max = 2000 },
 }
 
 Config.Boosting.RandomNames = {
-    "XgamerX",
-    "Just Lazzy",
-    "Zooster",
-    "Hype Squad",
-    "Lowkey Paul",
-    "Jimathy yorass",
-    "Paul Zac",
-    "Gov",
-    "Kareem",
+    "Вин Дизел",
+    "Хан Соло",
+    "Пол Уокър",
+    "Хан Лу",
+    "Мия Торето",
 }
 
 Config.Boosting.MetaReward = {
-    ["D"] = { min = 1, max = 1 },
-    ["C"] = { min = 1, max = 2 },
-    ["B"] = { min = 1, max = 3 },
-    ["A"] = { min = 2, max = 4 },
-    ["A+"] = { min = 2, max = 5 },
-    ["S"] = { min = 2, max = 6 },
-    ["S+"] = { min = 3, max = 7 },
+    ["D"] = { min = 20, max = 30},
+    ["C"] = { min = 16, max = 24},
+    ["B"] = { min = 15, max = 20},
+    ["A"] = { min = 8, max = 12},
+    ["A+"] = { min = 8, max = 12},
+    ["S"] = { min = 8, max = 12},
+    ["S+"] = { min = 8, max = 12 },
 }
 
 Config.Boosting.ReturnLocation = {
